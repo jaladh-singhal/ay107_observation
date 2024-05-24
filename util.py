@@ -20,7 +20,13 @@ def plot_frame(frame, figsize=(15,3), aspect=None, prange=(1,99), label=None, ti
 # Data transformation ---------------------------------------------------
 
 def reduce_frame(frame, exptime, master_flat, master_bias):
-    return ((frame - master_bias)/exptime) / master_flat #subtract dark too?
+    return ((frame - master_bias)/exptime) / master_flat
+
+def rectify_frame(frame, trace_y, y_bound_upper, y_bound_lower):
+    rectified_frame = []
+    for xi in range(frame.shape[1]):
+        rectified_frame.append(frame[trace_y[xi]-y_bound_lower : trace_y[xi]+y_bound_upper+1, xi])
+    return np.array(rectified_frame).T
 
 def correct_airmass(star_wvl, star_frame, extinction_wvl, extinction, airmass):
     airmass_extinction = extinction * airmass
