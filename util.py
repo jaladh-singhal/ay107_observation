@@ -17,7 +17,6 @@ def plot_frame(frame, figsize=(15, 3), aspect=None, prange=(1, 99), label=None, 
 
 
 def plot_frame2(frame, figsize=(15, 3), aspect=None, prange=(1, 99), label=None, title=None):
-    print('returning')
     fig, ax = plt.subplots(figsize=figsize)
     h = ax.imshow(frame, origin='lower', clim=clim(frame, prange), aspect=aspect)
     plt.colorbar(h, label=label)
