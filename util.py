@@ -64,3 +64,16 @@ def spectrum_wo_bg(source_spectrum, aperture_idx_range, bg_spectrum):
 
 def gaussian(x, h, mu, sigma):
     return h * np.exp(-((x - mu) ** 2) / (2 * sigma ** 2))
+
+def summarize_array(array):
+    return {
+        'min': np.min(array),
+        'max': np.max(array),
+        'mean': np.mean(array),
+        'std': np.std(array),
+        'var': np.var(array),
+        'sum': np.sum(array),
+        'median': np.median(array),
+        '25th_percentile': np.percentile(array, 25),
+        '75th_percentile': np.percentile(array, 75)
+    }
