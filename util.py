@@ -21,11 +21,12 @@ def plot_frame(frame, figsize=(15, 3), aspect=None, prange=(1, 99), label=None, 
         plt.title(title)
 
 
-def plot_frame2(frame, figsize=(15, 3), aspect=None, prange=(1, 99), label=None, title=None, ax=None):
+def plot_frame2(frame, figsize=(15, 3), aspect=None, prange=(1, 99), colorbar=True, label=None, title=None, ax=None):
     if ax is None:
         fig, ax = plt.subplots(figsize=figsize)
     h = ax.imshow(frame, origin='lower', clim=clim(frame, prange), aspect=aspect)
-    plt.colorbar(h, ax=ax, label=label, fraction=0.046, pad=0.04)
+    if colorbar:
+        plt.colorbar(h, ax=ax, label=label, fraction=0.046, pad=0.04)
     if title:
         ax.set_title(title)
     return ax
